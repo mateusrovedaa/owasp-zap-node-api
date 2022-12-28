@@ -54,6 +54,8 @@ app.get('/scan/report/:scandId', async (req: Request, res: Response) => {
     if (ascanStatusValue < 100) {
         return res.json("Scanning is not finished yet, please wait and try again in a few minutes.");
     }
+
+    // TODO recuperar o relatório
     res.json();
 });
 
