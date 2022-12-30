@@ -25,4 +25,4 @@ Realizar as requisições
 
 Para acessar o relatório usar a URL http://localhost:3000/scan/report/{scanId}
 
-![Relatório](https://file%2B.vscode-resource.vscode-cdn.net/home/mateus/Projects/work/solis/zap-api/docs/report.png?version%3D1672425034094)
+![Relatório](docs/report.png)
