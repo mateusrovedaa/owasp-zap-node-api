@@ -2,7 +2,7 @@
 
 Executar OWASP Zap em um container
 ```
-docker run -v $(pwd)/zap:/home/zap/:rw -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.key=testeapi
+docker run -u zap -v $(pwd)/zap:/home/zap/reports -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.key=testeapi
 ```
 
 Instalar os pacotes necessários
@@ -18,3 +18,11 @@ npm run dev
 Importar o arquivo `Insomnia.json` para seu Insomnia
 
 Realizar as requisições
+
+## Relatório gerado
+
+É possível gerar relatórios parciais ou completos, ou seja, ao chamar o endpoint do relatório, mesmo não tendo terminado, ele gerará os resultados.
+
+Para acessar o relatório usar a URL http://localhost:3000/scan/report/{scanId}
+
+![Relatório](https://file%2B.vscode-resource.vscode-cdn.net/home/mateus/Projects/work/solis/zap-api/docs/report.png?version%3D1672425034094)
