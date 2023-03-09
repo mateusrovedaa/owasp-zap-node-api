@@ -1,8 +1,10 @@
 # OWASP Zap
 
 Executar OWASP Zap em um container
+
+OBS: Após a versão 2.11.1 o módulo spider está com problemas na imagem docker
 ```
-docker run -u zap -v $(pwd)/zap:/home/zap/reports -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.key=testeapi
+docker run -u zap -v $(pwd)/zap:/home/zap/reports -p 8080:8080 -i owasp/zap2docker-stable:2.11.1 zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.key=testeapi
 ```
 
 Instalar os pacotes necessários

@@ -4,10 +4,12 @@ import path from 'path';
 import { setTimeout } from "timers/promises";
 import querystring from 'querystring';
 
+const PORT = 3000;
+const REPORTSPATH = '/zap';
+
 const app: Express = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/zap')));
-const PORT = 3000;
+app.use(express.static(path.join(__dirname, REPORTSPATH)));
 
 axios.defaults.headers.common['X-ZAP-API-Key'] = 'testeapi';
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -55,6 +57,10 @@ const removeProtocol = (url: string) => {
     return url.replace(/(^\w+:|^)\/\//, '');
 }
 
+const verifyIfReportFolderExists = () => {
+
+}
+
 app.post('/scan', async (req: Request, res: Response) => {
     const urlScan = { url: req.body.baseUrl };
     let spiderScanId = await spiderScan(urlScan);
@@ -80,10 +86,10 @@ app.get('/scan/report/:scandId', async (req: Request, res: Response) => {
         reportFileName: urlSlug,
         sites: url
     }
-    // Caso quiser aguardar o relatório ser concluído
+
     // const ascanStatusValue = await ascanStatus(scanId);
     // if (ascanStatusValue.status < 100) {
-    //     return res.json("Scanning is not finished yet, please wait and try again in a few minutes.");
+    //     res.redirect(301, `http://localhost:${PORT}/${urlSlug}.html`);
     // }
     const reportPathGenerated = await generateReportScan(params);
     const reportName = reportPathGenerated.generate.split("/").pop();
